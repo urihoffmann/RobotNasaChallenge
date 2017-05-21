@@ -1,5 +1,13 @@
 package com.robotnasa.challenge;
 
+
+/*
+ * Author: Urique Hoffmann
+ * 
+ * Class that implements unit test for REST
+ *  
+ * */
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -25,8 +33,11 @@ public class TestChallenge extends RobotNasaChallengeApplicationTests {
 
 	@Test
 	public void testRobotAbleMoviment() throws Exception {
+		// check a possible movement
 		mockMvc.perform(get("/rest/mars/MMRMMRMM")).andExpect(status().isOk());
+		// check an impossible movement
 		mockMvc.perform(get("/rest/mars/AAAA")).andExpect(status().isBadRequest());
+		// check movements that will make the robot go after the limits of the area
 		mockMvc.perform(get("/rest/mars/MMMMMMMMMMMMMMMMMMMMM")).andExpect(status().isBadRequest());
 
 	}
