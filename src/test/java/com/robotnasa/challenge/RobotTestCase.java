@@ -101,16 +101,6 @@ public class RobotTestCase {
 		assertEquals(robot.getPositionY(), 0);
 		
 	}
-	// Should return false for an Unavailable movement and true otherwise
-	@Test
-	public void testAvaiableMovement() {
-		SurfaceArea area = new SurfaceArea();
-		Robot robot = new Robot(area);
-		assertEquals(robot.isMovementAvaliable('A'), false);
-		assertEquals(robot.isMovementAvaliable('M'), true);
-		assertEquals(robot.isMovementAvaliable('L'), true);
-		assertEquals(robot.isMovementAvaliable('R'), true);
-	}
 	// Should return false if the robot go away from the area
 	@Test
 	public void testInArea() {

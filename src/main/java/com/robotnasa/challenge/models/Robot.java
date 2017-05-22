@@ -55,46 +55,30 @@ public class Robot {
 	}
 	// implements the turning right robot behavior 
 	public void turnRight() {
-		if (this.direction == this.directions.length-1) {
-			this.direction = 0;
-		}
-		else {
-			this.direction += 1;
-		}
+		this.direction = (this.direction + 1) % 4;
 	}
 	// implement the turning left robot behavior
 	public void turnLeft() {
-		if (this.direction == 0) {
-			this.direction = this.directions.length-1;
-		}
-		else {
-			this.direction -= 1;
-		}
+		this.direction = (this.direction + 3) % 4;
 	}
 	// implement the movement of going forward
 	// the movement depends on the direction
 	public void goForward() {
 		String currentPosition = this.getDirection();
 		if (currentPosition == "N") {
-			this.positionY += 1;
+			this.incrementPositionY();
 		}
 		else if (currentPosition == "E") {
-			this.positionX += 1;
+			this.incrementPositionX();
 		}
 		else if (currentPosition == "S") {
-			this.positionY -= 1;
+			this.decrementPositionY();
 		}
 		else {
-			this.positionX -= 1;
+			this.decrementPositionX();
 		}
 	}
-	// check is a movement is available
-	public boolean isMovementAvaliable(char movement) {
-		if (movement != 'L' && movement != 'R' && movement != 'M') {
-			return false;
-		}
-		return true;
-	}
+	
 	// check if the robot in in the surface area
 	public boolean isRobotInArea() {
 		if (this.positionX > this.Area.getAreaX() || this.positionY > this.Area.getAreaY()) {

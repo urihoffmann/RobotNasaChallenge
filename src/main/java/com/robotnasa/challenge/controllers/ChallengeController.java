@@ -27,18 +27,17 @@ public class ChallengeController {
 		SurfaceArea Area = new SurfaceArea();
 		Robot Robot = new Robot(Area);
 		for(int i=0; i < commands.length(); i++){
-			// Check if the robot is trying to make an impossible move
-			if (!Robot.isMovementAvaliable(commands.charAt(i))) {
-				return new ResponseEntity<>("400 Bad Request\n",HttpStatus.BAD_REQUEST);
-			}
 			if (commands.charAt(i) == 'R') {
 				Robot.turnRight();
 			}
 			else if (commands.charAt(i) == 'L') {
 				Robot.turnLeft();
 			}
-			else {
+			else if (commands.charAt(i) == 'M') {
 				Robot.goForward();
+			}
+			else {
+				return new ResponseEntity<>("400 Bad Request\n",HttpStatus.BAD_REQUEST);
 			}
 			// Check if the robot is inside the area
 			if (!Robot.isRobotInArea()) {
